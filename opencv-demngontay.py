@@ -1,16 +1,9 @@
-"""
-GaLaiLapTrinh
-Nhóm discord thảo luận, chia sẻ tài liệu python :  https://discord.gg/w5D4s363Pk
-Full video giải thích + hướng dẫn tại : https://www.youtube.com/c/galailaptrinh
-
-"""
-
 import cv2
 import time
 import os
 import hand as htm #import modul hand
 
-# cài đặt thêm pip install mediapipe #nếu lỗi với phiên bản mới nhất, hãy cài phiên bản cũ hơn
+
 
 cap=cv2.VideoCapture(0) # nếu có nhiều cam thì thêm id webcam  1,2,3..
 
@@ -38,10 +31,6 @@ while True:
     frame = detector.findHands(frame)
     lmList = detector.findPosition(frame, draw=False) # phát hiện vị trí
 
-
-
-
-
     if len(lmList) !=0:
         fingers= []
         # viết cho ngón cái (ý tường là điểm 4 ở bên trái hay bên phải điểm 2 )
@@ -67,10 +56,6 @@ while True:
         print(songontay)
 
 
-    #chú ý mỗi bức ảnh sẽ đẩy về giá trị của 1 mảng có chiều rông, cao khác nhau
-    # ví dụ ảnh 0.png : print(lst_2[0].shape) kết quả (126, 110, 3)
-    #frame[0:126,0:110] = lst_2[0]
-    #do các bức ảnh 0-5.png khác nhau các giá trị wisth, height nên phải get theo shape
         h, w, c = lst_2[songontay-1].shape
         frame[0:h,0:w] = lst_2[songontay-1]  # nếu số ngón tay =0 thì lst_2[-1] đẩy về phần tử cuối cùng của list là ảnh 6
 
